@@ -37,13 +37,19 @@ function App() {
     }
   }
 
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('projectName', projectName), [projectName])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('deliveryAddress', deliveryAddress), [deliveryAddress])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('deliveryDate', deliveryDate), [deliveryDate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('taskMaster', taskMaster), [taskMaster])
-  useEffect(() => setLocalStorage('explVilla', explVilla? '1': '0'), [explVilla])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setLocalStorage('explVilla', explVilla ? '1' : '0'), [explVilla])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('teamsKanal', teamsKanal), [teamsKanal])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('additionalInfo', additionalInfo), [additionalInfo])
 
   const clipboardCopy = () => {
