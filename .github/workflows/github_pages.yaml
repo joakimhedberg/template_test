@@ -1,8 +1,6 @@
 # Will build the code and commit the built code to the gh-pages branch where it will be deployed to github-pages
 name: Deploy to web
-on:
-  push:
-    branches: [main]
+on: [push]
 permissions:
   contents: write
 jobs:
