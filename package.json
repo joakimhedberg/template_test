@@ -1,5 +1,6 @@
 {
   "name": "villa_template",
+  "homepage": "https://joakimhedberg.github.io/template_test",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
