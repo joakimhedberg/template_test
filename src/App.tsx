@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import './App.scss'
 
 function App() {
   const [projectName, setProjectName] = useState<string>('')
@@ -52,26 +51,9 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setLocalStorage('additionalInfo', additionalInfo), [additionalInfo])
 
-  const clipboardCopy = () => {
-    const result = document.getElementById('resultDiv')
-    if (!result) return
-    function listener(e: ClipboardEvent) {
-      if (!result || !e || !e.clipboardData) {
-        return
-      }
-      e.clipboardData.setData('text/html', result.innerHTML)
-      e.clipboardData.setData('text/plain', result.innerHTML)
-      e.preventDefault()
-    }
-
-    document.addEventListener('copy', listener)
-    document.execCommand('copy')
-    document.removeEventListener('copy', listener)
-  }
-
   return (
     <div className="App">
-      <div className="AppForm">
+      <div style={{textAlign: 'left', padding: '10px'}}>
         <Form>
           <Form.Group>
             <Form.Label>Projektnamn</Form.Label>
@@ -90,22 +72,19 @@ function App() {
           </Form.Group>
         </Form>
       </div>
-      <div className="AppResult" id='resultDiv'>
-        <div className="txt_normal">Beställning {projectType()} {projectName}</div>
-        <div className="bold_underline">Vänligen bekräfta att ni tagit emot beställningen</div>
+      <div style={{fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif", padding: '20px', border: 'solid 1px darkgray'}} id='resultDiv'>
+        <div>Beställning {projectType()} {projectName}</div>
+        <div style={{fontWeight: 'bold', fontSize: '14pt', textDecoration: 'underline'}}>Vänligen bekräfta att ni tagit emot beställningen</div>
         <br />
-        <div className="txt_normal">Leveransadress: {deliveryAddress}</div>
+        <div>Leveransadress: {deliveryAddress}</div>
         <br />
-        <div className="txt_normal">Arbetshandlingar uppladdade i teams: <span className="bold_normal">{teamsKanal}</span></div>
-        <div className="txt_normal">Meddela eventuella ändringar i Arbetsmiljöplan efter riskbedömning.<br />
-          <span className="txt_bold_red">Skicka även in arbetsberedning innan påbörjat arbete.</span>
+        <div>Arbetshandlingar uppladdade i teams: <span style={{fontWeight: 'bold'}}>{teamsKanal}</span></div>
+        <div>Meddela eventuella ändringar i Arbetsmiljöplan efter riskbedömning.<br />
+          <span style={{fontWeight: 'bold', color: 'rgb(185, 5, 5)'}}>Skicka även in arbetsberedning innan påbörjat arbete.</span>
         </div>
-        <div className="txt_normal">Klarrapportera till uppdragsledare {taskMaster} efter slutförd anslutning.</div>
-        <div className="txt_normal">Önskat leveransdatum: {deliveryDate}</div>
-        <div className="txt_italic">{additionalInfo}</div>
-      </div>
-      <div>
-        <Button onClick={() => clipboardCopy()}>Kopiera</Button>
+        <div>Klarrapportera till uppdragsledare {taskMaster} efter slutförd anslutning.</div>
+        <div>Önskat leveransdatum: {deliveryDate}</div>
+        <div style={{fontStyle: 'italic', whiteSpace: 'pre'}}>{additionalInfo}</div>
       </div>
     </div>
   );
