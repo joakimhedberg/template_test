@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 function App() {
   const [projectName, setProjectName] = useState<string>('')
@@ -13,6 +13,18 @@ function App() {
 
   const projectType = () => {
     return explVilla? 'Expl. Villa': 'Villa'
+  }
+
+  const highlight = (id: string) => {
+    const range = document.createRange()
+    range.selectNode(document.getElementById(id) as HTMLElement)
+    window.getSelection()?.removeAllRanges()
+    window.getSelection()?.addRange(range)
+  }
+
+  const copyText = () => {
+    highlight('resultDiv')
+    document.execCommand('copy')
   }
 
   useEffect(() => {
@@ -85,6 +97,9 @@ function App() {
         <div>Klarrapportera till uppdragsledare {taskMaster} efter slutförd anslutning.</div>
         <div>Önskat leveransdatum: {deliveryDate}</div>
         <div style={{fontStyle: 'italic', whiteSpace: 'pre'}}>{additionalInfo}</div>
+      </div>
+      <div>
+        <Button onClick={() => copyText()}>Kopiera</Button>
       </div>
     </div>
   );
