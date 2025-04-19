@@ -25,6 +25,7 @@ function App() {
   const copyText = () => {
     highlight('resultDiv')
     document.execCommand('copy')
+    window.getSelection()?.removeAllRanges()
   }
 
   useEffect(() => {
